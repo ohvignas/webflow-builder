@@ -61,7 +61,9 @@ Vérifier discovery docs
 ### Phase 2 : Plan de page
 
 - [ ] 6. Identifier la page existante la plus similaire au besoin
-- [ ] 7. Switcher sur cette page + lire sa structure (element_tool → get_all_elements)
+- [ ] 7. Switcher sur cette page + lire sa structure :
+         element_tool → get_all_elements(include_style_properties: false)
+         ⚠️ Ne pas omettre ce paramètre : sans lui, la réponse dépasse la limite de tokens
 - [ ] 8. Écrire le plan de la nouvelle page :
          - Liste ordonnée des sections
          - Pour chaque section : style Section + style Container + styles internes
@@ -97,6 +99,13 @@ Vérifier discovery docs
           - Utiliser `safe-publish` (skill officiel)
 
 ## Règles de construction
+
+### Paramètre obligatoire sur get_all_elements
+
+Toujours appeler `get_all_elements` avec `include_style_properties: false`. Sans ce
+paramètre, toute page complexe provoque "exceeds maximum allowed tokens". Le tableau
+`styles` de chaque élément (noms des classes) reste disponible avec `false` — les
+propriétés CSS détaillées sont dans `styles.md` issu de la discovery.
 
 ### Hiérarchie des sections (pattern standard)
 ```
