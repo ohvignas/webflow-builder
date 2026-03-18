@@ -18,22 +18,35 @@ reconstruire ce qui existe déjà et casser la cohérence visuelle du site.
 
 - [ ] 1. Récupérer l'ID et le nom du site (mcp: data_sites_tool → list_sites)
 - [ ] 2. Lister toutes les pages (data_pages_tool → list_pages)
-- [ ] 3. Trouver la page Style Guide (chercher "style" dans les titres de pages)
-- [ ] 4. Switcher sur la page Style Guide (de_page_tool → switch_page)
-- [ ] 5. Lire tous les éléments du style guide (element_tool → get_all_elements)
-- [ ] 6. Extraire et documenter :
-         - Palette de couleurs (noms des classes bg-*, color-*)
-         - Échelle typographique (H1→H6, paragraphe large/normal/petit)
-         - Système de spacers (classes spacer + tailles disponibles)
-         - Border-radius disponibles
-         - Styles de boutons (classes + combo classes)
-         - Composants (ComponentInstance trouvés)
-- [ ] 7. Switcher sur une page de contenu similaire au besoin de l'utilisateur
-- [ ] 8. Lire sa structure (element_tool → get_all_elements)
-- [ ] 9. Documenter les patterns de sections (Section + styles, Container + styles, blocs internes)
-- [ ] 10. Vérifier si les docs existent déjà dans ~/.claude/webflow/{site-id}/
-- [ ] 11. Sauvegarder les 4 fichiers (discovery.md, components.md, styles.md, pages.md)
-- [ ] 12. Annoncer à l'utilisateur que la discovery est complète + résumé
+- [ ] 3. Récupérer les variables design :
+         variable_tool → get_variable_collections
+         variable_tool → get_variables pour chaque collection
+         → couleurs, typographie, espacements
+- [ ] 4. Récupérer toutes les classes CSS :
+         style_tool → get_styles(query: "all", skip_properties: false)
+         Si Claude Code retourne "exceeds maximum allowed tokens" :
+           → get_styles(query: "all", skip_properties: true)
+           → identifier les classes importantes : btn-*, heading-*, section-*, container-*, spacer-*
+             Si aucune classe ne correspond, prendre les 20 premières classes de la liste
+           → get_styles(query: "filtered", filter_ids: [IDs des classes identifiées])
+- [ ] 5. Trouver la page Style Guide (chercher "style" dans les titres de pages)
+- [ ] 6. Switcher sur la page Style Guide (de_page_tool → switch_page)
+- [ ] 7. Lire la structure du Style Guide (element_tool → get_all_elements(include_style_properties: false))
+         → retourne le tableau `styles` de chaque élément (noms des classes appliquées)
+         → identifier les combos de classes et les ComponentInstance (navbar, footer) avec leurs IDs
+         Si Claude Code retourne "exceeds maximum allowed tokens" :
+           → Ignorer cette étape — les classes et ComponentInstance IDs sont déjà disponibles
+             depuis get_styles (étape 4) et list_pages (étape 2)
+           → Documenter dans discovery.md que les combos de classes n'ont pas pu être extraits
+- [ ] 8. Extraire et documenter :
+         - Palette de couleurs (depuis variable_tool)
+         - Échelle typographique (depuis variable_tool)
+         - Classes disponibles avec propriétés CSS (depuis get_styles)
+         - Combos de classes (depuis structure Style Guide)
+         - Composants : ComponentInstance avec IDs (navbar, footer)
+- [ ] 9. Vérifier si les docs existent déjà dans ~/.claude/webflow/{site-id}/
+- [ ] 10. Sauvegarder les 4 fichiers (discovery.md, components.md, styles.md, pages.md)
+- [ ] 11. Annoncer à l'utilisateur que la discovery est complète + résumé
 
 ## Règles techniques
 
@@ -44,6 +57,12 @@ reconstruire ce qui existe déjà et casser la cohérence visuelle du site.
   en conséquence.
 - Les ComponentInstance (navbar, footer) ne se recréent pas — on les copie ou on
   les référence par ID.
+- Ne jamais appeler `get_all_elements` sans préciser `include_style_properties: false`.
+  La valeur par défaut retourne toutes les propriétés CSS de chaque élément et dépasse
+  la limite de tokens pour toute page complexe. Signal d'overflow : Claude Code retourne
+  "exceeds maximum allowed tokens" dans le résultat de l'outil.
+  Note : avec `false`, le tableau `styles` de chaque élément (noms des classes appliquées)
+  reste disponible — seules les valeurs CSS brutes sont exclues.
 
 ## Output attendu
 
