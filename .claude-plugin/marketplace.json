@@ -12,7 +12,7 @@
       "author": {
         "name": "Antoine Vigneau"
       },
-      "source": ".",
+      "source": "./plugins/webflow-builder",
       "category": "productivity"
     }
   ]
