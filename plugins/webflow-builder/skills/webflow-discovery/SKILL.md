@@ -29,15 +29,18 @@ reconstruire ce qui existe déjà et casser la cohérence visuelle du site.
            → identifier les classes importantes : btn-*, heading-*, section-*, container-*, spacer-*
              Si aucune classe ne correspond, prendre les 20 premières classes de la liste
            → get_styles(query: "filtered", filter_ids: [IDs des classes identifiées])
+             (vérifier le nom exact du paramètre si l'appel échoue : peut s'appeler ids ou style_ids)
 - [ ] 5. Trouver la page Style Guide (chercher "style" dans les titres de pages)
+         Si aucune page ne contient "style" dans son titre : passer directement à l'étape 8,
+         documenter l'absence de Style Guide dans discovery.md
 - [ ] 6. Switcher sur la page Style Guide (de_page_tool → switch_page)
 - [ ] 7. Lire la structure du Style Guide (element_tool → get_all_elements(include_style_properties: false))
          → retourne le tableau `styles` de chaque élément (noms des classes appliquées)
          → identifier les combos de classes et les ComponentInstance (navbar, footer) avec leurs IDs
          Si Claude Code retourne "exceeds maximum allowed tokens" :
-           → Ignorer cette étape — les classes et ComponentInstance IDs sont déjà disponibles
-             depuis get_styles (étape 4) et list_pages (étape 2)
-           → Documenter dans discovery.md que les combos de classes n'ont pas pu être extraits
+           → Ignorer cette étape — les classes CSS sont déjà disponibles depuis get_styles (étape 4)
+           → Documenter dans discovery.md que les combos de classes et ComponentInstance IDs
+             n'ont pas pu être extraits (nécessitera une consultation manuelle)
 - [ ] 8. Extraire et documenter :
          - Palette de couleurs (depuis variable_tool)
          - Échelle typographique (depuis variable_tool)
