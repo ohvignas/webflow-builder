@@ -75,16 +75,23 @@ Brainstorm (questions 1 par 1)
           - Adapter le tone of voice à la cible
 - [ ] 14. Faire valider le Copy Deck par l'utilisateur
 
-### Phase 3 : Maquette Pencil (recommandée)
+### Phase 3 : Maquette (recommandée)
 
 - [ ] 15. Demander à l'utilisateur :
           "Les 4 documents sont prêts. Je recommande de créer une maquette
-          dans Pencil avant de construire sur Webflow — ça permet de valider
-          le rendu visuel rapidement. On fait la maquette ?"
-- [ ] 16. Si oui :
-          a. Vérifier que le MCP Pencil est installé
+          avant de construire sur Webflow — ça permet de valider le rendu
+          visuel rapidement. Tu veux la faire avec quel outil ?
+            A) Google Stitch (génère des UI complètes depuis un prompt — recommandé)
+            B) Pencil (design vectoriel dans ton IDE)
+            C) Pas de maquette, on va directement sur Webflow"
+- [ ] 16. Si Stitch (A) :
+          a. Vérifier que le MCP Stitch est installé, sinon guider l'install :
+             `npx @_davideast/stitch-mcp init`
+          b. Invoquer le skill `stitch-mockup` avec le chemin des docs
+      Si Pencil (B) :
+          a. Vérifier que le MCP Pencil est installé (extension IDE)
           b. Invoquer le skill `pencil-mockup` avec le chemin des docs
-          Si non :
+      Si pas de maquette (C) :
           a. Passer à l'étape 17
 
 ### Phase 4 : Transition vers Webflow
@@ -101,10 +108,16 @@ Brainstorm (questions 1 par 1)
 claude mcp add --transport http webflow https://mcp.webflow.com/mcp
 ```
 
-### Pencil MCP (recommandé pour les maquettes)
-Pencil doit être installé comme extension dans votre IDE (VS Code / Cursor).
+### Google Stitch MCP (recommandé pour les maquettes)
+```bash
+npx @_davideast/stitch-mcp init
+```
+Setup guidé : gcloud + auth + config MCP automatique.
+Doc : https://github.com/davideast/stitch-mcp
+
+### Pencil MCP (alternative pour les maquettes)
+Installer l'extension Pencil dans votre IDE (VS Code / Cursor).
 Le MCP Pencil est fourni avec l'extension — pas d'installation séparée.
-Si le MCP Pencil n'est pas détecté, proposer de continuer sans maquette.
 
 ### Skills officiels Webflow (recommandé)
 ```bash

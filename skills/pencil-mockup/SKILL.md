@@ -1,6 +1,6 @@
 ---
 name: pencil-mockup
-description: Use when the user wants to create a visual mockup before building in Webflow. Creates .pen wireframes and styled mockups using the Pencil MCP tools. Requires design documents (PRD, style guide, sitemap, copy deck) to exist first. Also use when the user says "mockup", "maquette", "wireframe", or "design dans Pencil".
+description: Use when the user explicitly wants to create mockups with Pencil (.pen files). Creates wireframes and styled mockups using Pencil MCP tools. If the user just says "mockup" without specifying a tool, ask whether they prefer Pencil or Google Stitch first. Also use when the user says "pencil", "fichier .pen", or "design dans Pencil".
 ---
 
 # Pencil Mockup

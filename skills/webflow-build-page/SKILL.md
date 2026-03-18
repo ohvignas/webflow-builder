@@ -1,12 +1,12 @@
 ---
 name: webflow-build-page
-description: Use when asked to create a new page, section, or layout on a Webflow site. Recommends creating a Pencil mockup first if none exists. Requires discovery documents to exist. Never start building without reading the discovery docs. Also use when the user says "build page", "create page", "add a page", or "nouvelle page".
+description: Use when asked to create a new page, section, or layout on a Webflow site. Recommends creating a mockup first (Google Stitch or Pencil) if none exists. Requires discovery documents to exist. Never start building without reading the discovery docs. Also use when the user says "build page", "create page", "add a page", or "nouvelle page".
 ---
 
 # Webflow Build Page
 
 Construire une page Webflow qui respecte exactement la DA du site existant.
-Recommande de créer une maquette Pencil avant de builder, mais c'est optionnel.
+Recommande de créer une maquette (Google Stitch ou Pencil) avant de builder, mais c'est optionnel.
 
 <HARD-GATE>
 Ne jamais créer un seul élément avant d'avoir :
@@ -19,9 +19,9 @@ Ne jamais créer un seul élément avant d'avoir :
 
 ```
 Vérifier discovery docs
-  → Proposer maquette Pencil (recommandé mais optionnel)
-    → Si oui : créer les docs de design (style-guide, sitemap section, copy-deck section)
-             → invoquer pencil-mockup
+  → Proposer maquette (Stitch ou Pencil — recommandé mais optionnel)
+    → Si oui : créer les docs de design
+             → invoquer stitch-mockup ou pencil-mockup
              → valider la maquette
     → Si non : continuer
   → Écrire le plan de page
@@ -39,21 +39,23 @@ Vérifier discovery docs
 - [ ] 3. Vérifier si des docs de design existent déjà :
          `~/.claude/webflow/{site-id}/style-guide.md`, `sitemap.md`, `copy-deck.md`
 
-### Phase 1 : Proposition maquette Pencil (recommandée)
+### Phase 1 : Proposition maquette (recommandée)
 
 - [ ] 4. Demander à l'utilisateur :
          "Avant de construire, je recommande de créer une maquette rapide
-         dans Pencil pour valider le visuel. Ça prend quelques minutes et
-         ça évite les allers-retours sur Webflow. On fait la maquette ?"
-- [ ] 5. Si oui :
+         pour valider le visuel. Ça évite les allers-retours sur Webflow.
+           A) Google Stitch — génère une UI complète depuis un prompt (recommandé)
+           B) Pencil — design vectoriel dans ton IDE
+           C) Pas de maquette, on construit directement"
+- [ ] 5. Si Stitch (A) ou Pencil (B) :
          a. Si les docs de design n'existent pas, les créer :
             - Rédiger un mini style-guide basé sur les docs de discovery
             - Rédiger la section sitemap pour cette page
             - Rédiger le copy-deck pour cette page
             - Faire valider chaque document
-         b. Invoquer `pencil-mockup` avec les docs
+         b. Invoquer `stitch-mockup` (A) ou `pencil-mockup` (B) avec les docs
          c. Une fois la maquette validée, continuer
-      Si non :
+      Si pas de maquette (C) :
          a. Passer directement au plan
 
 ### Phase 2 : Plan de page
@@ -64,7 +66,7 @@ Vérifier discovery docs
          - Liste ordonnée des sections
          - Pour chaque section : style Section + style Container + styles internes
          - Textes / contenu prévu (depuis le copy-deck ou la maquette)
-         - Si une maquette Pencil existe : la référencer comme source de vérité
+         - Si une maquette existe : la référencer comme source de vérité
 - [ ] 9. Soumettre le plan à l'utilisateur pour validation AVANT de toucher quoi que ce soit
 
 ### Phase 3 : Construction Webflow
@@ -80,14 +82,14 @@ Vérifier discovery docs
           d. CTA final
           e. Footer (ComponentInstance existant)
 - [ ] 15. Après chaque section majeure : prendre un screenshot pour valider visuellement
-          Si une maquette Pencil existe, comparer avec la maquette
+          Si une maquette existe, comparer avec la maquette
 - [ ] 16. Ajouter les spacers entre chaque section
 - [ ] 17. Vérifier navbar + footer (ComponentInstance)
 
 ### Phase 4 : Vérification
 
 - [ ] 18. Screenshot complet de la page
-- [ ] 19. Comparer avec la maquette Pencil si elle existe
+- [ ] 19. Comparer avec la maquette si elle existe
 - [ ] 20. Vérifier le SEO : slug, title, description, OpenGraph
 - [ ] 21. Annoncer la page terminée et proposer :
           - Utiliser `accessibility-audit` (skill officiel)
@@ -126,5 +128,5 @@ puis faire un nouvel appel element_builder.
 | Builder sans plan validé | Toujours faire valider le plan avant |
 | Dépasser 3 niveaux en une fois | Splitter en plusieurs appels element_builder |
 | Ne pas prendre de screenshots | Valider visuellement après chaque section majeure |
-| Ignorer la maquette Pencil | Si elle existe, c'est la source de vérité visuelle |
+| Ignorer la maquette | Si elle existe, c'est la source de vérité visuelle |
 | Ne pas proposer les audits | Toujours proposer accessibility + link-checker après |
