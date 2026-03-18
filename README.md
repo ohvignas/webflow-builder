@@ -18,11 +18,14 @@ Plugin Claude Code pour créer des sites Webflow de A à Z — du brainstorm à 
 ### Étape 1 : Installer ce plugin
 
 ```bash
-# UNE commande, c'est tout
-git clone https://github.com/ohvignas/webflow-builder.git ~/.claude/skills/webflow-builder
+# Ajouter le marketplace (une seule fois)
+claude plugin marketplace add ohvignas/webflow-builder
+
+# Installer le plugin
+claude plugin install webflow-builder@webflow-builder
 ```
 
-C'est tout. Les skills sont automatiquement détectés par Claude Code au prochain lancement.
+Relancer Claude Code. Les skills sont disponibles au prochain lancement.
 
 ### Étape 2 : Installer le MCP Webflow (obligatoire)
 

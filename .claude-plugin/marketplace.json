@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "webflow-builder",
+  "description": "End-to-end Webflow site creation — brainstorm, design docs, Pencil mockups, discovery, and guided page building",
+  "owner": {
+    "name": "Antoine Vigneau"
+  },
+  "plugins": [
+    {
+      "name": "webflow-builder",
+      "description": "End-to-end Webflow site creation — brainstorm, design docs, Pencil mockups, discovery, and guided page building with official Webflow skills integration",
+      "author": {
+        "name": "Antoine Vigneau"
+      },
+      "source": ".",
+      "category": "productivity"
+    }
+  ]
+}
