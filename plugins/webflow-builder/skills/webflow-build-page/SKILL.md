@@ -139,3 +139,4 @@ puis faire un nouvel appel element_builder.
 | Ne pas prendre de screenshots | Valider visuellement après chaque section majeure |
 | Ignorer la maquette | Si elle existe, c'est la source de vérité visuelle |
 | Ne pas proposer les audits | Toujours proposer accessibility + link-checker après |
+| Appeler get_all_elements sans paramètre | Utiliser include_style_properties: false — sinon overflow de tokens |
