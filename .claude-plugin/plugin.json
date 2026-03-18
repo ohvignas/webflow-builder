@@ -1,0 +1,6 @@
+{
+  "name": "webflow-builder",
+  "description": "End-to-end Webflow site creation — brainstorm, design docs, Pencil mockups, discovery, and guided page building with official Webflow skills integration",
+  "version": "2.0.0",
+  "skills": "./skills/"
+}
