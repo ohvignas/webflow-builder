@@ -36,6 +36,8 @@ Vérifier discovery docs
 - [ ] 1. Vérifier l'existence de `~/.claude/webflow/{site-id}/discovery/discovery.md`
          → Si absent : invoquer `webflow-discovery` EN PREMIER
 - [ ] 2. Lire les docs de discovery : discovery.md, components.md, styles.md, pages.md
+         Si des screenshots existent dans ~/.claude/webflow/{site-id}/screenshots/,
+         les charger pour contexte visuel avant d'écrire le plan de page.
 - [ ] 3. Vérifier si des docs de design existent déjà :
          `~/.claude/webflow/{site-id}/style-guide.md`, `sitemap.md`, `copy-deck.md`
 
