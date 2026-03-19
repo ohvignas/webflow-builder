@@ -50,6 +50,35 @@ reconstruire ce qui existe déjà et casser la cohérence visuelle du site.
 - [ ] 9. Vérifier si les docs existent déjà dans ~/.claude/webflow/{site-id}/
 - [ ] 10. Sauvegarder les 4 fichiers (discovery.md, components.md, styles.md, pages.md)
 - [ ] 11. Annoncer à l'utilisateur que la discovery est complète + résumé
+- [ ] 12. Phase visuelle — screenshots des pages prioritaires :
+
+         Identifier les pages prioritaires depuis la liste de l'étape 2 :
+           a. Homepage : page dont le slug est "/" ou première page sans parentId
+           b. Pages parentes : pages dont l'id apparaît comme parentId d'autres pages
+           c. Templates CMS : pour chaque groupe avec même parentId, prendre la page
+              avec lastUpdated le plus récent (lastUpdated est présent dans list_pages,
+              format ISO 8601 ex: "2026-03-16T23:33:41.071Z")
+              Si deux pages ont le même lastUpdated, prendre la première
+              Si lastUpdated absent, prendre la première du groupe
+           d. Maximum 15 pages au total
+
+         Avant de commencer : lister les outils MCP disponibles et chercher un outil
+         contenant "screenshot", "capture" ou "image".
+         Si aucun outil screenshot n'existe : noter "Screenshots non disponibles (outil MCP absent)"
+         dans discovery.md et terminer — NE PAS bloquer la discovery.
+
+         Pour chaque page prioritaire (si outil screenshot disponible) :
+           a. de_page_tool → switch_page
+           b. Prendre un screenshot avec l'outil trouvé
+           c. Normaliser le slug en nom de fichier :
+              "/" → "home.png"
+              autres → remplacer tous "/" par "-", supprimer le "-" initial
+              ex: "/blog/article-1" → "blog-article-1.png"
+           d. Sauvegarder dans ~/.claude/webflow/{site-id}/screenshots/{nom-normalisé}.png
+              (créer le dossier screenshots/ si absent)
+           e. Si switch_page ou screenshot échoue : passer à la page suivante sans bloquer
+
+         Mettre à jour la section ## Screenshots de discovery.md avec la liste des captures.
 
 ## Règles techniques
 
@@ -66,6 +95,14 @@ reconstruire ce qui existe déjà et casser la cohérence visuelle du site.
   "exceeds maximum allowed tokens" dans le résultat de l'outil.
   Note : avec `false`, le tableau `styles` de chaque élément (noms des classes appliquées)
   reste disponible — seules les valeurs CSS brutes sont exclues.
+- Phase visuelle (étape 12) : conditionnelle à la présence d'un outil screenshot dans
+  le MCP Webflow connecté. Si absent, ignorer silencieusement.
+  Logique de priorisation des pages :
+  1. Homepage = slug "/" ou première page sans parentId
+  2. Pages parentes = pages dont l'id apparaît comme parentId d'autres pages
+  3. Templates CMS = une page par groupe de même parentId (la plus récente par lastUpdated)
+  4. Maximum 15 pages
+  Normalisation slug → nom de fichier : "/" → "home", "/" remplacés par "-", "-" initial supprimé
 
 ## Output attendu
 
