@@ -50,7 +50,7 @@ reconstruire ce qui existe déjà et casser la cohérence visuelle du site.
 - [ ] 9. Vérifier si les docs existent déjà dans ~/.claude/webflow/{site-id}/
 - [ ] 10. Sauvegarder les 4 fichiers (discovery.md, components.md, styles.md, pages.md)
 - [ ] 11. Annoncer à l'utilisateur que la discovery est complète + résumé
-- [ ] 12. Phase visuelle — screenshots des pages prioritaires :
+- [ ] 12. Phase visuelle — screenshots des pages prioritaires (conditionnel — outil MCP requis) :
 
          Identifier les pages prioritaires depuis la liste de l'étape 2 :
            a. Homepage : page dont le slug est "/" ou première page sans parentId
@@ -62,8 +62,8 @@ reconstruire ce qui existe déjà et casser la cohérence visuelle du site.
               Si lastUpdated absent, prendre la première du groupe
            d. Maximum 15 pages au total
 
-         Avant de commencer : lister les outils MCP disponibles et chercher un outil
-         contenant "screenshot", "capture" ou "image".
+         Avant de commencer : vérifier parmi les outils disponibles en contexte si l'un
+         contient "screenshot", "capture" ou "image".
          Si aucun outil screenshot n'existe : noter "Screenshots non disponibles (outil MCP absent)"
          dans discovery.md et terminer — NE PAS bloquer la discovery.
 
@@ -102,7 +102,8 @@ reconstruire ce qui existe déjà et casser la cohérence visuelle du site.
   2. Pages parentes = pages dont l'id apparaît comme parentId d'autres pages
   3. Templates CMS = une page par groupe de même parentId (la plus récente par lastUpdated)
   4. Maximum 15 pages
-  Normalisation slug → nom de fichier : "/" → "home", "/" remplacés par "-", "-" initial supprimé
+  Normalisation slug → nom de fichier : "/" → "home.png", "/" remplacés par "-", "-" initial supprimé
+  ex: "/blog/article-1" → "blog-article-1.png"
 
 ## Output attendu
 
@@ -111,6 +112,7 @@ Après cette skill, 4 fichiers doivent exister dans ~/.claude/webflow/{site-id}/
 - components.md (tous les composants avec IDs)
 - styles.md (toutes les classes avec usage)
 - pages.md (toutes les pages avec slug, parentId, publishedPath)
+- screenshots/ (optionnel — si outil screenshot MCP disponible)
 
 ## Quand relancer
 
