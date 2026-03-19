@@ -86,3 +86,18 @@ Exemple :
 ## Notes importantes
 
 {Tout ce qui est spécifique à ce site et qu'il faut absolument savoir}
+
+---
+
+## Screenshots
+
+| Page | Slug | Fichier |
+|------|------|---------|
+| Homepage | / | screenshots/home.png |
+| {Nom page parente} | {slug} | screenshots/{slug-normalisé}.png |
+| {Template CMS} | {slug} | screenshots/{slug-normalisé}.png |
+
+*Screenshots pris avec le Webflow Designer MCP — reflètent l'état au moment de la discovery.*
+*Normalisation slug : "/" → home.png, slashes remplacés par tirets (ex: /blog/post → blog-post.png)*
+
+> Si l'outil screenshot n'était pas disponible : noter ici "Screenshots non disponibles (outil MCP absent)"
