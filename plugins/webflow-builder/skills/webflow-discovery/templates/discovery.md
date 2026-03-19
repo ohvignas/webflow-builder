@@ -91,9 +91,11 @@ Exemple :
 
 ## Screenshots
 
+*Chemins relatifs à `~/.claude/webflow/{site-id}/`*
+
 | Page | Slug | Fichier |
 |------|------|---------|
-| Homepage | / | screenshots/home.png |
+| {Nom homepage} | / | screenshots/home.png |
 | {Nom page parente} | {slug} | screenshots/{slug-normalisé}.png |
 | {Template CMS} | {slug} | screenshots/{slug-normalisé}.png |
 
